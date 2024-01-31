@@ -18,13 +18,6 @@ function App () {
     const regedix = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
     if (regedix.test(email)) {
       setValid(valid)
-      // const requestOptions = {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email })
-      // }
-      // await fetch('./thanks', { requestOptions })
-      // console.log('correro valido')
       Datos(email)
       return navigate('/thanks')
     } else {
