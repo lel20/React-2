@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
 import { question } from "./data";
+import Question from "../component/Question";
 function Programacion() {
   const filtrar = question.filter(
     (programacion) => programacion.categoria === "programacion"
   );
   const [preguta, setPregunta] = useState(filtrar);
   const [indice, setIndice] = useState(0);
-  console.log(preguta);
-  const handleClick = () => {
-    setIndice(indice + 1);
+  const handleClickAtras = () => {
+    if (indice <= 0) return;
+    setIndice(indice - 1);
+  };
+  const handleClickSiguiente = () => {
+    if (indice >= preguta.length - 1) return;
+    else setIndice(indice + 1);
   };
   return (
-    <div>
-      {preguta[indice]["pregunta"]}
-      <ul>
-        {preguta[indice]["opciones"].map((opcion) => (
-          <li key={opcion}>{opcion}</li>
-        ))}
-      </ul>
-      <button onClick={handleClick}>Siguiente</button>
-    </div>
+    <>
+      <Question question={preguta} indice={indice} />
+      <div className="gap-x-10 flex justify-end">
+        <button onClick={handleClickAtras}>Atras</button>
+        <button onClick={handleClickSiguiente}>Siguiente</button>
+      </div>
+    </>
   );
 }
 
